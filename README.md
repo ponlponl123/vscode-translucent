@@ -1,71 +1,39 @@
-# vscode-community-translucent README
+# vscode-translucent
 
-This is the README for your extension "vscode-community-translucent". After writing up a brief description, we recommend including the following sections.
+> [!UNRELEASED]
+> Only tested on windows 11 25H2 / v1.110.1, Electron 39.6.0, Node.js 22.22.0
 
-## Features
+This extension will make vscode transparent with blur background and u free to setting your transparent background. like how much opacity, blur, saturation, brabrabra.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## Installation
 
-For example if there is an image subfolder under your extension project workspace:
+For now, this extension should be use with [Mica For Everyone](https://github.com/MicaForEveryone/MicaForEveryone).
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+1. Install this extension to your vscode.
+2. Add process `Code` to your [Mica For Everyone](https://github.com/MicaForEveryone/MicaForEveryone).
+3. In the **Advanced** section, check the **Enable blur behind**
+4. Enjoy!
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+### Flickering after using [Mica For Everyone](https://github.com/MicaForEveryone/MicaForEveryone)
 
-## Release Notes
+To fix this issue, add the `--disable-gpu-compositing` flag to your VS Code shortcut target.
 
-Users appreciate release notes as you update your extension.
+**Example:**
 
-### 1.0.0
+```
+"C:\Users\<YourUsername>\AppData\Local\Programs\Microsoft VS Code\Code.exe" --disable-gpu-compositing
+```
 
-Initial release of ...
+> **Note:** Replace `<YourUsername>` with your actual Windows username.
 
-### 1.0.1
+## Preview
 
-Fixed issue #.
+![](./images/Screenshot%202026-03-09%20040752.png)
+![](./images/Screenshot%202026-03-09%20040946.png)
+![](./images/Screenshot%202026-03-09%20041319.png)
+![](./images/Screenshot%202026-03-09%20041010.png)
 
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+**If u love this project u can support me by just give me some a cup of coffee!**
+[Buy Me a Coffee!](https://buymeacoffee.com/ponlponl123)

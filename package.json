@@ -1,23 +1,84 @@
 {
-  "name": "vscode-community-translucent",
-  "displayName": "vscode-community-translucent",
-  "description": "Make vscode have mica effect on windows and adjust panel, buttons and functions look minimal!",
-  "version": "0.0.1",
+  "name": "vscode-translucent",
+  "displayName": "vscode-translucent",
+  "description": "A Visual Studio Code extension that applies a native translucent backdrop effect to the editor window on Windows 11.",
+  "version": "0.1.0",
   "engines": {
-    "vscode": "^1.96.0"
+    "vscode": "^1.110.0"
   },
   "categories": [
+    "Other",
+    "Themes",
+    "Visualization"
+  ],
+  "bugs": {
+    "url": "https://github.com/ponlponl123/vscode-translucent/issues"
+  },
+  "homepage": "https://github.com/ponlponl123/vscode-translucent",
+  "keywords": [
+    "vscode",
+    "translucent",
+    "blur",
+    "windows",
+    "windows 11",
+    "mica",
+    "acrylic",
+    "tabbed",
     "Other"
   ],
+  "publisher": "ponlponl123",
+  "license": "MIT",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/ponlponl123/vscode-translucent"
+  },
+  "sponsor": {
+    "url": "https://github.com/sponsors/ponlponl123"
+  },
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "vscode-community-translucent.helloWorld",
-        "title": "Hello World"
+        "command": "vscode-translucent.enable",
+        "title": "Translucent: Enable"
+      },
+      {
+        "command": "vscode-translucent.disable",
+        "title": "Translucent: Disable"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Translucent",
+      "properties": {
+        "vscode-translucent.effect": {
+          "type": "string",
+          "default": "mica",
+          "enum": [
+            "mica",
+            "acrylic",
+            "tabbed",
+            "auto",
+            "none"
+          ],
+          "enumDescriptions": [
+            "Windows 11 Mica material",
+            "Windows acrylic blur",
+            "Windows 11 Mica tabbed variant",
+            "System decides the backdrop",
+            "No native backdrop (transparent only)"
+          ],
+          "description": "Native window backdrop effect (requires restart)."
+        },
+        "vscode-translucent.opacity": {
+          "type": "number",
+          "default": 0.75,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Background opacity of the workbench UI (0 = fully transparent, 1 = opaque)."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
