@@ -6,8 +6,14 @@ export function buildCSS(opacity: number): string {
 body {
   background-color: transparent !important;
 }
-*:not(.context-view, .monaco-editor .margin, .monaco-editor .margin *, .lines-content, .lines-content *, .monaco-list-rows) {
-  transition: .24s;
+.monaco-list-row,
+.monaco-workbench .activitybar>.content :not(.monaco-menu)>.monaco-action-bar .action-item,
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab,
+.monaco-button,
+.monaco-inputbox,
+.monaco-pane-view .pane>.pane-header,
+.quick-input-list-entry {
+  transition: background-color .24s;
 }
 #monaco-parts-splash,
 #monaco-parts-splash > div {

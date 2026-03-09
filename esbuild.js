@@ -1,7 +1,32 @@
 const esbuild = require("esbuild");
+const fs = require('fs');
+const path = require('path');
 
 const production = process.argv.includes('--production');
 const watch = process.argv.includes('--watch');
+
+/**
+ * @type {import('esbuild').Plugin}
+ */
+const copyImagesPlugin = {
+	name: 'copy-images',
+	setup(build) {
+		build.onEnd(() => {
+			const source = path.join(__dirname, 'images');
+			const dest = path.join(__dirname, 'dist', 'images');
+			if (!fs.existsSync(dest)) {
+				fs.mkdirSync(dest, { recursive: true });
+			}
+			fs.readdirSync(source).forEach(file => {
+				fs.copyFileSync(
+					path.join(source, file),
+					path.join(dest, file)
+				);
+			});
+			console.log('Copied images to dist/images');
+		});
+	},
+};
 
 /**
  * @type {import('esbuild').Plugin}
@@ -38,6 +63,7 @@ async function main() {
 		external: ['vscode'],
 		logLevel: 'silent',
 		plugins: [
+			copyImagesPlugin,
 			/* add to the end of plugins array */
 			esbuildProblemMatcherPlugin,
 		],
