@@ -1,5 +1,4 @@
 import * as vscode from "vscode";
-import * as cp from "child_process";
 import { getInstallPaths } from "../utils/paths";
 import { getConfig } from "../utils/config";
 import * as mainJs from "../patchers/main-js";
@@ -41,13 +40,7 @@ export async function disableTranslucent() {
 async function promptRestart() {
   const action = await vscode.window.showInformationMessage(
     "Translucent effect applied. A full restart is required.",
-    "Restart Now",
   );
-  if (action === "Restart Now") {
-    const codePath = process.execPath;
-    cp.spawn(codePath, { detached: true, stdio: "ignore" }).unref();
-    vscode.commands.executeCommand("workbench.action.quit");
-  }
 }
 
 function handleError(action: string, err: unknown) {
