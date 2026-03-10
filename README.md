@@ -31,6 +31,19 @@ To fix this issue, add the `--disable-gpu-compositing` flag to your VS Code shor
 
 > **Note:** Replace `<YourUsername>` with your actual Windows username.
 
+### Terminal font rendering issue
+
+![Terminal font rendering issue](./images/Screenshot%202026-03-10%20145945-2.png)
+
+VS Code tries to use your GPU to make the terminal faster, but it can cause these exact visual artifacts. Turning it off usually solves the problem instantly.
+
+1. Open your VS Code Settings by pressing `Ctrl + ,`.
+2. In the search bar at the top, type: `terminal.integrated.gpuAcceleration`
+3. Change the dropdown setting from `auto` or `on` to `off`.
+4. Close your current terminal and open a new one (or restart VS Code completely).
+
+![Terminal font rendering solved](./images/Screenshot%202026-03-10%20150009.png)
+
 ## Uninstall
 
 To uninstall this extension, you need to use command `Translucent: Disable` to disable the effect. by pressing `Ctrl + Shift + P` and type `Translucent: Disable`.
