@@ -6,6 +6,13 @@
 
 This extension makes VS Code transparent with a blurred background.
 
+## Preview
+
+![](./images/Screenshot%202026-03-09%20040752.png)
+![](./images/Screenshot%202026-03-09%20040946.png)
+![](./images/Screenshot%202026-03-09%20041319.png)
+![](./images/Screenshot%202026-03-09%20041010.png)
+
 ## Installation
 
 For now, this extension should be use with [Mica For Everyone](https://github.com/MicaForEveryone/MicaForEveryone).
@@ -49,13 +56,6 @@ VS Code tries to use your GPU to make the terminal faster, but it can cause thes
 To uninstall this extension, you need to use command `Translucent: Disable` to disable the effect. by pressing `Ctrl + Shift + P` and type `Translucent: Disable`.
 Then remove process `Code` from your [Mica For Everyone](https://github.com/MicaForEveryone/MicaForEveryone).
 And now you can uninstall this extension.
-
-## Preview
-
-![](./images/Screenshot%202026-03-09%20040752.png)
-![](./images/Screenshot%202026-03-09%20040946.png)
-![](./images/Screenshot%202026-03-09%20041319.png)
-![](./images/Screenshot%202026-03-09%20041010.png)
 
 **If u love this project u can support me by just give me some a cup of coffee!**
 [Buy Me a Coffee!](https://buymeacoffee.com/ponlponl123)
