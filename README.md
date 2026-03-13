@@ -8,10 +8,10 @@ This extension makes VS Code transparent with a blurred background.
 
 ## Preview
 
-![](./images/Screenshot%202026-03-09%20040752.png)
-![](./images/Screenshot%202026-03-09%20040946.png)
-![](./images/Screenshot%202026-03-09%20041319.png)
-![](./images/Screenshot%202026-03-09%20041010.png)
+![](./images/image-darktheme.png)
+![](./images/image-darkgreentheme.png)
+![](./images/image-lighttheme.png)
+![](./images/image-lightorangetheme.png)
 
 ## Installation
 
@@ -40,7 +40,7 @@ To fix this issue, add the `--disable-gpu-compositing` flag to your VS Code shor
 
 ### Terminal font rendering issue
 
-![Terminal font rendering issue](./images/Screenshot%202026-03-10%20145945-2.png)
+![Terminal font rendering issue](./images/image-terminalfont-render.png)
 
 VS Code tries to use your GPU to make the terminal faster, but it can cause these exact visual artifacts. Turning it off usually solves the problem instantly.
 
@@ -49,7 +49,7 @@ VS Code tries to use your GPU to make the terminal faster, but it can cause thes
 3. Change the dropdown setting from `auto` or `on` to `off`.
 4. Close your current terminal and open a new one (or restart VS Code completely).
 
-![Terminal font rendering solved](./images/Screenshot%202026-03-10%20150009.png)
+![Terminal font rendering solved](./images/image-terminal-gpu-acc.png)
 
 ## Uninstall
 
