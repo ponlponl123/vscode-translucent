@@ -13,15 +13,9 @@ export function isPatched(content: string): boolean {
 }
 
 function stripExisting(content: string): string {
-  const start = content.indexOf(HTML_MARKER);
-  const end = content.indexOf(HTML_MARKER_END);
-  if (start === -1 || end === -1) {
-    return content;
-  }
-  const before = content.lastIndexOf("\n", start);
-  const after = end + HTML_MARKER_END.length;
-  return (
-    content.slice(0, before === -1 ? start : before) + content.slice(after)
+  return content.replace(
+    /\n?\t*<!-- vscode-translucent-patched -->[\s\S]*?<!-- \/vscode-translucent-patched -->\n?\t*/g,
+    ""
   );
 }
 

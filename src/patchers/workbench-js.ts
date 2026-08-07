@@ -4,18 +4,7 @@ const MARKER = "vscode-translucent-patched";
 const MARKER_RE = /vscode-translucent-patched/;
 
 const FIND =
-  /background-color:\s*\$\{l\};\s*color:\s*\$\{d\};\s*margin:\s*0;\s*padding:\s*0;\s*\}/;
-
-const REPLACEMENT =
-  "background-color:transparent;color:${d};margin:0;padding:0;}" +
-  "#monaco-parts-splash,#monaco-parts-splash *{background-color:transparent!important}" +
-  `/*${MARKER}*/`;
-
-const PATCHED =
-  /background-color:\s*transparent\s*;\s*color:\s*\$\{d\};\s*margin:\s*0;\s*padding:\s*0;\s*\}\s*#monaco-parts-splash\s*,\s*#monaco-parts-splash\s*\*\s*\{\s*background-color:\s*transparent\s*!important\s*\}\s*\/\*vscode-translucent-patched\*\//;
-
-const ORIGINAL =
-  "background-color: ${l}; color: ${d}; margin: 0; padding: 0; }";
+  /background-color:\s*\$\{([\w$]+)\};\s*color:\s*\$\{([\w$]+)\};\s*margin:\s*0;\s*padding:\s*0;\s*\}/;
 
 export function isPatched(content: string): boolean {
   return MARKER_RE.test(content);
@@ -26,21 +15,28 @@ export function patch(filePath: string): boolean {
   if (isPatched(content)) {
     content = doUnpatch(content);
   }
-  if (!FIND.test(content)) {
+  const match = FIND.exec(content);
+  if (!match) {
     throw new Error(
       "Could not find initialShellColors template in workbench.js",
     );
   }
-  content = content.replace(FIND, REPLACEMENT);
+  const [, bgVar, fgVar] = match;
+  const replacement =
+    `background-color:transparent;color:\${${fgVar}};margin:0;padding:0;}` +
+    "#monaco-parts-splash,#monaco-parts-splash *{background-color:transparent!important}" +
+    `/*${MARKER}:${match[0]}*/`;
+
+  content = content.replace(FIND, replacement);
   fs.writeFileSync(filePath, content, "utf-8");
   return true;
 }
 
-function doUnpatch(content: string): string {
-  if (PATCHED.test(content)) {
-    content = content.replace(PATCHED, ORIGINAL);
-  }
-  return content;
+export function doUnpatch(content: string): string {
+  return content.replace(
+    /background-color:\s*transparent\s*;\s*color:\s*\$\{[\w$]+\};\s*margin:\s*0;\s*padding:\s*0;\s*\}\s*#monaco-parts-splash\s*,\s*#monaco-parts-splash\s*\*\s*\{\s*background-color:\s*transparent\s*!important\s*\}\s*\/\*vscode-translucent-patched(?::(.*?))?\*\//g,
+    (_match, orig) => orig || "background-color: ${l}; color: ${d}; margin: 0; padding: 0; }",
+  );
 }
 
 export function unpatch(filePath: string): boolean {
@@ -52,3 +48,4 @@ export function unpatch(filePath: string): boolean {
   fs.writeFileSync(filePath, content, "utf-8");
   return true;
 }
+

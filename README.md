@@ -2,7 +2,7 @@
 
 > [!IMPORTANT]
 > **UNRELEASED:**
-> Only tested on windows 11 25H2 / v1.110.1, Electron 39.6.0, Node.js 22.22.0
+> Only tested on windows 11 25H2 / v1.132.0, Electron 42.7.1, Node.js 24.18.0
 
 This extension makes VS Code transparent with a blurred background.
 
