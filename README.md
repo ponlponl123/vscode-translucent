@@ -26,10 +26,19 @@ For now, this extension should be use with [Mica For Everyone](https://github.co
 
 ## Configuration
 
-You can customize the opacity and material effect in your VS Code settings (`Ctrl + ,`):
+You can customize opacity, borders, and backdrop effect in your VS Code settings (`Ctrl + ,`):
 
-- `vscode-translucent.opacity`: Set background opacity of the workbench UI from `0.0` (fully transparent) to `1.0` (opaque). Default is `0.48` / `0.75`.
-  - When you change this setting, the extension will automatically re-patch and prompt you to **Reload Window** (`Ctrl + R`).
+| Setting | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `vscode-translucent.opacity` | `number` (`0.0`-`1.0`) | `0.75` | Default background opacity of workbench UI. |
+| `vscode-translucent.editorContainerBackgroundOpacity` | `number` (`0.0`-`1.0`) | `0.75` | Background opacity of the editor container. |
+| `vscode-translucent.leftSidebarContainerBackgroundOpacity` | `number` (`0.0`-`1.0`) | `0.75` | Background opacity of the left sidebar container. |
+| `vscode-translucent.rightSidebarContainerBackgroundOpacity` | `number` (`0.0`-`1.0`) | `0.75` | Background opacity of the right sidebar (auxiliary bar) container. |
+| `vscode-translucent.editorContainerBorderVisible` | `boolean` | `true` | Controls whether the editor container border is visible. |
+| `vscode-translucent.leftSidebarContainerBorderVisible` | `boolean` | `true` | Controls whether the left sidebar container border is visible. |
+| `vscode-translucent.rightSidebarContainerBorderVisible` | `boolean` | `true` | Controls whether the right sidebar (auxiliary bar) container border is visible. |
+
+> Changing opacity or border settings will prompt you to **Reload Window** (`Ctrl + R`) to apply changes immediately.
 
 ## Known Issues
 
