@@ -134,10 +134,21 @@ describe("Patcher Tests", () => {
 
       assert.strictEqual(workbenchHtml.isPatched(sampleHtml), false);
 
-      workbenchHtml.patch(filePath, 0.8);
+      workbenchHtml.patch(filePath, {
+        opacity: 0.8,
+        editorContainerBorderVisible: false,
+        leftSidebarContainerBorderVisible: false,
+        rightSidebarContainerBorderVisible: false,
+        editorContainerBackgroundOpacity: 0.5,
+        leftSidebarContainerBackgroundOpacity: 0.4,
+        rightSidebarContainerBackgroundOpacity: 0.6,
+      });
       let patchedContent = fs.readFileSync(filePath, "utf-8");
       assert.strictEqual(workbenchHtml.isPatched(patchedContent), true);
       assert.ok(patchedContent.includes("vscode-translucent-patched"));
+      assert.ok(patchedContent.includes("50%"));
+      assert.ok(patchedContent.includes("40%"));
+      assert.ok(patchedContent.includes("60%"));
 
       workbenchHtml.unpatch(filePath);
       const unpatchedContent = fs.readFileSync(filePath, "utf-8");

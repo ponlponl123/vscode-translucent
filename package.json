@@ -2,7 +2,7 @@
   "name": "vscode-translucent",
   "displayName": "vscode-translucent",
   "description": "A Visual Studio Code extension that applies a native translucent backdrop effect to the editor window on Windows 11.",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "engines": {
     "vscode": "^1.110.0"
   },
@@ -78,6 +78,42 @@
           "minimum": 0,
           "maximum": 1,
           "description": "Background opacity of the workbench UI (0 = fully transparent, 1 = opaque)."
+        },
+        "vscode-translucent.editorContainerBorderVisible": {
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the editor container border is visible."
+        },
+        "vscode-translucent.leftSidebarContainerBorderVisible": {
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the left sidebar container border is visible."
+        },
+        "vscode-translucent.rightSidebarContainerBorderVisible": {
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether the right sidebar (auxiliary bar) container border is visible."
+        },
+        "vscode-translucent.editorContainerBackgroundOpacity": {
+          "type": "number",
+          "default": 0.75,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Background opacity of the editor container (0 = fully transparent, 1 = opaque)."
+        },
+        "vscode-translucent.leftSidebarContainerBackgroundOpacity": {
+          "type": "number",
+          "default": 0.75,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Background opacity of the left sidebar container (0 = fully transparent, 1 = opaque)."
+        },
+        "vscode-translucent.rightSidebarContainerBackgroundOpacity": {
+          "type": "number",
+          "default": 0.75,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Background opacity of the right sidebar (auxiliary bar) container (0 = fully transparent, 1 = opaque)."
         }
       }
     }

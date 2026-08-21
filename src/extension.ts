@@ -17,16 +17,24 @@ export function activate(context: vscode.ExtensionContext) {
       disableTranslucent,
     ),
     vscode.workspace.onDidChangeConfiguration(async (e) => {
-      if (e.affectsConfiguration("vscode-translucent.opacity")) {
+      if (
+        e.affectsConfiguration("vscode-translucent.opacity") ||
+        e.affectsConfiguration("vscode-translucent.editorContainerBorderVisible") ||
+        e.affectsConfiguration("vscode-translucent.leftSidebarContainerBorderVisible") ||
+        e.affectsConfiguration("vscode-translucent.rightSidebarContainerBorderVisible") ||
+        e.affectsConfiguration("vscode-translucent.editorContainerBackgroundOpacity") ||
+        e.affectsConfiguration("vscode-translucent.leftSidebarContainerBackgroundOpacity") ||
+        e.affectsConfiguration("vscode-translucent.rightSidebarContainerBackgroundOpacity")
+      ) {
         const paths = getInstallPaths();
         try {
           if (fs.existsSync(paths.workbenchHtml)) {
             const content = fs.readFileSync(paths.workbenchHtml, "utf-8");
             if (workbenchHtml.isPatched(content)) {
               const config = getConfig();
-              workbenchHtml.patch(paths.workbenchHtml, config.opacity);
+              workbenchHtml.patch(paths.workbenchHtml, config);
               const selection = await vscode.window.showInformationMessage(
-                "Translucent opacity updated. Reload window to apply changes.",
+                "Translucent appearance updated. Reload window to apply changes.",
                 "Reload Window",
               );
               if (selection === "Reload Window") {
@@ -36,7 +44,7 @@ export function activate(context: vscode.ExtensionContext) {
           }
         } catch (err: unknown) {
           const msg = err instanceof Error ? err.message : String(err);
-          vscode.window.showErrorMessage(`Failed to update opacity: ${msg}`);
+          vscode.window.showErrorMessage(`Failed to update appearance: ${msg}`);
         }
       }
 

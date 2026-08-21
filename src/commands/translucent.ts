@@ -10,7 +10,7 @@ export async function enableTranslucent() {
   const config = getConfig();
   try {
     mainJs.patch(paths.mainJs, config.effect);
-    workbenchHtml.patch(paths.workbenchHtml, config.opacity);
+    workbenchHtml.patch(paths.workbenchHtml, config);
     workbenchJs.patch(paths.workbenchJs);
     await promptRestart();
   } catch (err: unknown) {

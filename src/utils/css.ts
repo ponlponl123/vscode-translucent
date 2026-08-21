@@ -1,10 +1,29 @@
-export function buildCSS(opacity: number): string {
-  const o = Math.max(0, Math.min(1, opacity));
-  const pct = Math.round(o * 100);
+import { TranslucentConfig } from "./config";
+
+export type CSSOptions = Partial<TranslucentConfig> | number;
+
+export function buildCSS(opts: CSSOptions = 0.75): string {
+  const options = typeof opts === "number" ? { opacity: opts } : opts;
+  const baseOpacity = Math.max(0, Math.min(1, options.opacity ?? 0.75));
+  const editorOpacity = Math.max(0, Math.min(1, options.editorContainerBackgroundOpacity ?? baseOpacity));
+  const leftSidebarOpacity = Math.max(0, Math.min(1, options.leftSidebarContainerBackgroundOpacity ?? baseOpacity));
+  const rightSidebarOpacity = Math.max(0, Math.min(1, options.rightSidebarContainerBackgroundOpacity ?? baseOpacity));
+
+  const basePct = Math.round(baseOpacity * 100);
+  const editorPct = Math.round(editorOpacity * 100);
+  const leftSidebarPct = Math.round(leftSidebarOpacity * 100);
+  const rightSidebarPct = Math.round(rightSidebarOpacity * 100);
+
+  const editorBorderVisible = options.editorContainerBorderVisible ?? true;
+  const leftSidebarBorderVisible = options.leftSidebarContainerBorderVisible ?? true;
+  const rightSidebarBorderVisible = options.rightSidebarContainerBorderVisible ?? true;
 
   return `
 body,
-body>div[role="application"]>div.monaco-grid-view {
+body>div[role="application"]>div.monaco-grid-view,
+.pane.vertical.expanded,
+.pane.expanded.vertical,
+.pane.chat-viewpane-container.expanded.vertical.merged-header {
   background-color: transparent !important;
   background: transparent !important;
 }
@@ -22,7 +41,7 @@ body>div[role="application"]>div.monaco-grid-view {
   background-color: transparent !important;
 }
 .monaco-workbench {
-  background-color: color-mix(in srgb, var(--vscode-editor-background, #1e1e1e) ${pct}%, transparent) !important;
+  background-color: color-mix(in srgb, var(--vscode-editor-background, #1e1e1e) ${basePct}%, transparent) !important;
 }
 .monaco-workbench .part.activitybar {
   --activity-bar-width: 40px !important;
@@ -33,11 +52,8 @@ body>div[role="application"]>div.monaco-grid-view {
 .monaco-editor,
 .monaco-editor .margin,
 .monaco-breadcrumbs,
-.monaco-workbench .part.sidebar,
-.monaco-workbench .part.editor,
 .monaco-workbench .part.panel,
 .monaco-workbench .part>.content,
-.monaco-workbench .part.auxiliarybar,
 .monaco-workbench .part.titlebar,
 .monaco-workbench .part.statusbar,
 .monaco-workbench .part.activitybar,
@@ -57,6 +73,22 @@ body>div[role="application"]>div.monaco-grid-view {
 .monaco-workbench .part.statusbar:not(:focus).status-border-top:after,
 .monaco-workbench .pane-body.integrated-terminal .xterm {
   background-color: transparent !important;
+}
+div#workbench.parts.sidebar,
+.monaco-workbench .part.sidebar,
+.style-override .monaco-pane-view .pane,
+.style-override.floating-panels .part.sidebar {
+  background-color: color-mix(in srgb, var(--vscode-sideBar-background, var(--vscode-panel-background)) ${leftSidebarPct}%, transparent) !important;
+}
+div#workbench.parts.auxiliarybar,
+.monaco-workbench .part.auxiliarybar,
+.style-override.floating-panels .part.auxiliarybar {
+  background-color: color-mix(in srgb, var(--vscode-sideBar-background, var(--vscode-panel-background)) ${rightSidebarPct}%, transparent) !important;
+}
+.monaco-workbench .part.editor,
+.monaco-workbench .part.editor>.content,
+.monaco-workbench .part.editor>.content .editor-group-container {
+  background-color: color-mix(in srgb, var(--vscode-editor-background, #1e1e1e) ${editorPct}%, transparent) !important;
 }
 .monaco-menu-container,
 .monaco-editor .sticky-widget,
@@ -100,22 +132,44 @@ canvas.decorationsOverviewRuler,
   padding-right: 4px;
   box-sizing: border-box;
 }
-.monaco-workbench .sidebar,
 .monaco-workbench .part.titlebar,
 .monaco-pane-view .pane>.pane-header,
 .monaco-workbench .activitybar.bordered:before,
-.monaco-workbench .part.panel.bottom .composite.title,
-.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab {
+.monaco-workbench .part.panel.bottom .composite.title {
   border: none !important;
 }
+${!leftSidebarBorderVisible ? `
+.monaco-workbench .part.sidebar,
+div#workbench.parts.sidebar,
+.monaco-workbench .part.sidebar.left,
+.monaco-workbench .sidebar {
+  border: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}` : ""}
+${!rightSidebarBorderVisible ? `
+.monaco-workbench .part.auxiliarybar,
+div#workbench.parts.auxiliarybar,
+.monaco-workbench .auxiliarybar,
+.monaco-workbench .part.sidebar.right,
+.style-override.floating-panels .part.auxiliarybar,
+.monaco-workbench.floating-panels .part.floating-part-outer-right {
+  border: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}` : ""}
+${!editorBorderVisible ? `
+.monaco-workbench .part.editor,
+.monaco-workbench .part.editor>.content .editor-group-container,
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab {
+  border: none !important;
+  box-shadow: none !important;
+}` : ""}
 .monaco-workbench .part.editor>.content .editor-group-container.active>.title .tabs-container>.tab.active {
   background-color: var(--vscode-tab-activeBackground) !important;
 }
 .monaco-editor .scroll-decoration {
   box-shadow: none !important;
-}
-.monaco-workbench .activitybar>.content :not(.monaco-menu)>.monaco-action-bar {
-  padding: 4px;
 }
 .monaco-workbench .activitybar>.content :not(.monaco-menu)>.monaco-action-bar .action-item {
   margin-bottom: 3px;
@@ -136,7 +190,7 @@ canvas.decorationsOverviewRuler,
   display: none !important;
 }
 .minimap > canvas {
-  opacity: ${o};
+  opacity: ${baseOpacity};
 }
 `.trim();
 }

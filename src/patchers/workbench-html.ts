@@ -1,11 +1,11 @@
 import * as fs from "fs";
-import { buildCSS } from "../utils/css";
+import { buildCSS, CSSOptions } from "../utils/css";
 
 const HTML_MARKER = "<!-- vscode-translucent-patched -->";
 const HTML_MARKER_END = "<!-- /vscode-translucent-patched -->";
 
-function getStyleBlock(opacity: number): string {
-  return `\n\t\t${HTML_MARKER}\n\t\t<style>${buildCSS(opacity)}</style>\n\t\t${HTML_MARKER_END}`;
+function getStyleBlock(options?: CSSOptions | number): string {
+  return `\n\t\t${HTML_MARKER}\n\t\t<style>${buildCSS(options)}</style>\n\t\t${HTML_MARKER_END}`;
 }
 
 export function isPatched(content: string): boolean {
@@ -19,13 +19,13 @@ function stripExisting(content: string): string {
   );
 }
 
-export function patch(filePath: string, opacity: number): boolean {
+export function patch(filePath: string, options?: CSSOptions | number): boolean {
   let content = fs.readFileSync(filePath, "utf-8");
   content = stripExisting(content);
   if (!content.includes("</head>")) {
     throw new Error("Could not find </head> in workbench.html");
   }
-  content = content.replace("</head>", `${getStyleBlock(opacity)}\n\t</head>`);
+  content = content.replace("</head>", `${getStyleBlock(options)}\n\t</head>`);
   fs.writeFileSync(filePath, content, "utf-8");
   return true;
 }
