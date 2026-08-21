@@ -3,8 +3,10 @@ export function buildCSS(opacity: number): string {
   const pct = Math.round(o * 100);
 
   return `
-body {
+body,
+body>div[role="application"]>div.monaco-grid-view {
   background-color: transparent !important;
+  background: transparent !important;
 }
 .monaco-list-row,
 .monaco-workbench .activitybar>.content :not(.monaco-menu)>.monaco-action-bar .action-item,
@@ -48,7 +50,7 @@ body {
 .monaco-list.list_id_7 .monaco-list-rows,
 .monaco-workbench .part.auxiliarybar>.title,
 .monaco-workbench .part.editor>.content .editor-group-container>.title,
-.monaco-workbench .part.editor>.content .editor-group-container>.editor-container,
+.monaco-workbench > :not(.monaco-modal-editor-block) .part.editor>.content .editor-group-container>.editor-container,
 .monaco-workbench .part.editor>.content .editor-group-container.active>.title .tabs-container>.tab,
 .editor-group-container > .editor-container .overflow-guard > .monaco-scrollable-element > .monaco-editor-background,
 .monaco-workbench .part.editor>.content .editor-group-container>.title>.tabs-and-actions-container.tabs-border-bottom:after,

@@ -2,7 +2,7 @@
 
 > [!IMPORTANT]
 > **UNRELEASED:**
-> Only tested on windows 11 25H2 / v1.132.0, Electron 42.7.1, Node.js 24.18.0
+> Only tested on windows 11 25H2 / v1.134.0, Electron 42.7.1, Node.js 24.18.0
 
 This extension makes VS Code transparent with a blurred background.
 
@@ -23,6 +23,13 @@ For now, this extension should be use with [Mica For Everyone](https://github.co
 4. Add process `Code` to your [Mica For Everyone](https://github.com/MicaForEveryone/MicaForEveryone).
 5. In the **Advanced** section, check the **Enable blur behind**
 6. Enjoy!
+
+## Configuration
+
+You can customize the opacity and material effect in your VS Code settings (`Ctrl + ,`):
+
+- `vscode-translucent.opacity`: Set background opacity of the workbench UI from `0.0` (fully transparent) to `1.0` (opaque). Default is `0.48` / `0.75`.
+  - When you change this setting, the extension will automatically re-patch and prompt you to **Reload Window** (`Ctrl + R`).
 
 ## Known Issues
 

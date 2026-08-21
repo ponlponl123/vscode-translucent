@@ -79,7 +79,7 @@ export function doUnpatch(content: string): string {
   ).replace(
     /((?:this|[\w$]+)(?:\.[\w$]+)?\.setBackgroundColor\()"#00000000"\)\s*\/\*vscode-translucent-patched\*\//g,
     `$1"#FFFFFF")`
-  ).replace(
+  ).replace( 
     /experimentalDarkMode\s*:\s*(!0|true)\s*,\s*(?:backgroundMaterial\s*:\s*"[^"]*"|transparent\s*:\s*!0|transparent\s*:\s*true)\s*\/\*vscode-translucent-patched\*\//g,
     `experimentalDarkMode: $1`
   );

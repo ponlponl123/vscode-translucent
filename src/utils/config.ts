@@ -11,6 +11,6 @@ export function getConfig(): TranslucentConfig {
   const cfg = vscode.workspace.getConfiguration("vscode-translucent");
   return {
     effect: cfg.get<EffectType>("effect", "mica"),
-    opacity: cfg.get<number>("opacity", 0.75),
+    opacity: cfg.get<number>("opacity", 0.48),
   };
 }
