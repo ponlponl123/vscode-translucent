@@ -11,6 +11,7 @@ export interface TranslucentConfig {
   editorContainerBackgroundOpacity: number;
   leftSidebarContainerBackgroundOpacity: number;
   rightSidebarContainerBackgroundOpacity: number;
+  applyToJupyterNotebook: boolean;
 }
 
 export function getConfig(): TranslucentConfig {
@@ -25,5 +26,6 @@ export function getConfig(): TranslucentConfig {
     editorContainerBackgroundOpacity: cfg.get<number>("editorContainerBackgroundOpacity", defaultOpacity),
     leftSidebarContainerBackgroundOpacity: cfg.get<number>("leftSidebarContainerBackgroundOpacity", defaultOpacity),
     rightSidebarContainerBackgroundOpacity: cfg.get<number>("rightSidebarContainerBackgroundOpacity", defaultOpacity),
+    applyToJupyterNotebook: cfg.get<boolean>("applyToJupyterNotebook", false),
   };
 }

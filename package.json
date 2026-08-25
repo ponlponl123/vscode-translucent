@@ -2,7 +2,7 @@
   "name": "vscode-translucent",
   "displayName": "vscode-translucent",
   "description": "A Visual Studio Code extension that applies a native translucent backdrop effect to the editor window on Windows 11.",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "engines": {
     "vscode": "^1.110.0"
   },
@@ -50,73 +50,108 @@
         "title": "Translucent: Disable"
       }
     ],
-    "configuration": {
-      "title": "Translucent",
-      "properties": {
-        "vscode-translucent.effect": {
-          "type": "string",
-          "default": "mica",
-          "enum": [
-            "mica",
-            "acrylic",
-            "tabbed",
-            "auto",
-            "none"
-          ],
-          "enumDescriptions": [
-            "Windows 11 Mica material",
-            "Windows acrylic blur",
-            "Windows 11 Mica tabbed variant",
-            "System decides the backdrop",
-            "No native backdrop (transparent only)"
-          ],
-          "description": "Native window backdrop effect (requires restart)."
-        },
-        "vscode-translucent.opacity": {
-          "type": "number",
-          "default": 0.75,
-          "minimum": 0,
-          "maximum": 1,
-          "description": "Background opacity of the workbench UI (0 = fully transparent, 1 = opaque)."
-        },
-        "vscode-translucent.editorContainerBorderVisible": {
-          "type": "boolean",
-          "default": true,
-          "description": "Controls whether the editor container border is visible."
-        },
-        "vscode-translucent.leftSidebarContainerBorderVisible": {
-          "type": "boolean",
-          "default": true,
-          "description": "Controls whether the left sidebar container border is visible."
-        },
-        "vscode-translucent.rightSidebarContainerBorderVisible": {
-          "type": "boolean",
-          "default": true,
-          "description": "Controls whether the right sidebar (auxiliary bar) container border is visible."
-        },
-        "vscode-translucent.editorContainerBackgroundOpacity": {
-          "type": "number",
-          "default": 0.75,
-          "minimum": 0,
-          "maximum": 1,
-          "description": "Background opacity of the editor container (0 = fully transparent, 1 = opaque)."
-        },
-        "vscode-translucent.leftSidebarContainerBackgroundOpacity": {
-          "type": "number",
-          "default": 0.75,
-          "minimum": 0,
-          "maximum": 1,
-          "description": "Background opacity of the left sidebar container (0 = fully transparent, 1 = opaque)."
-        },
-        "vscode-translucent.rightSidebarContainerBackgroundOpacity": {
-          "type": "number",
-          "default": 0.75,
-          "minimum": 0,
-          "maximum": 1,
-          "description": "Background opacity of the right sidebar (auxiliary bar) container (0 = fully transparent, 1 = opaque)."
+    "configuration": [
+      {
+        "title": "Translucent: Window & General",
+        "order": 1,
+        "properties": {
+          "vscode-translucent.effect": {
+            "order": 1,
+            "type": "string",
+            "default": "mica",
+            "enum": [
+              "mica",
+              "acrylic",
+              "tabbed",
+              "auto",
+              "none"
+            ],
+            "enumDescriptions": [
+              "Windows 11 Mica material",
+              "Windows acrylic blur",
+              "Windows 11 Mica tabbed variant",
+              "System decides the backdrop",
+              "No native backdrop (transparent only)"
+            ],
+            "description": "Native window backdrop effect (requires restart)."
+          },
+          "vscode-translucent.opacity": {
+            "order": 2,
+            "type": "number",
+            "default": 0.75,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Default background opacity of the workbench UI (0 = fully transparent, 1 = opaque)."
+          }
+        }
+      },
+      {
+        "title": "Translucent: Container Opacity",
+        "order": 2,
+        "properties": {
+          "vscode-translucent.editorContainerBackgroundOpacity": {
+            "order": 1,
+            "type": "number",
+            "default": 0.75,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Background opacity of the editor container (0 = fully transparent, 1 = opaque)."
+          },
+          "vscode-translucent.leftSidebarContainerBackgroundOpacity": {
+            "order": 2,
+            "type": "number",
+            "default": 0.75,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Background opacity of the left sidebar container (0 = fully transparent, 1 = opaque)."
+          },
+          "vscode-translucent.rightSidebarContainerBackgroundOpacity": {
+            "order": 3,
+            "type": "number",
+            "default": 0.75,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Background opacity of the right sidebar (auxiliary bar) container (0 = fully transparent, 1 = opaque)."
+          }
+        }
+      },
+      {
+        "title": "Translucent: Container Borders",
+        "order": 3,
+        "properties": {
+          "vscode-translucent.editorContainerBorderVisible": {
+            "order": 1,
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the editor container border is visible."
+          },
+          "vscode-translucent.leftSidebarContainerBorderVisible": {
+            "order": 2,
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the left sidebar container border is visible."
+          },
+          "vscode-translucent.rightSidebarContainerBorderVisible": {
+            "order": 3,
+            "type": "boolean",
+            "default": true,
+            "description": "Controls whether the right sidebar (auxiliary bar) container border is visible."
+          }
+        }
+      },
+      {
+        "title": "Translucent: Integrations",
+        "order": 4,
+        "properties": {
+          "vscode-translucent.applyToJupyterNotebook": {
+            "order": 1,
+            "type": "boolean",
+            "default": false,
+            "description": "Forces `--vscode-notebook-editorBackground` to transparent for Jupyter and VS Code Notebook editors."
+          }
         }
       }
-    }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",

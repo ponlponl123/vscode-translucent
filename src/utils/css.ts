@@ -17,8 +17,18 @@ export function buildCSS(opts: CSSOptions = 0.75): string {
   const editorBorderVisible = options.editorContainerBorderVisible ?? true;
   const leftSidebarBorderVisible = options.leftSidebarContainerBorderVisible ?? true;
   const rightSidebarBorderVisible = options.rightSidebarContainerBorderVisible ?? true;
+  const applyToJupyterNotebook = options.applyToJupyterNotebook ?? false;
 
   return `
+${applyToJupyterNotebook ? `
+:root,
+.monaco-workbench,
+.notebookOverlay,
+.notebook-editor,
+.notebook-editor-container {
+  --vscode-notebook-editorBackground: transparent !important;
+}
+` : ""}
 body,
 body>div[role="application"]>div.monaco-grid-view,
 .pane.vertical.expanded,

@@ -24,7 +24,8 @@ export function activate(context: vscode.ExtensionContext) {
         e.affectsConfiguration("vscode-translucent.rightSidebarContainerBorderVisible") ||
         e.affectsConfiguration("vscode-translucent.editorContainerBackgroundOpacity") ||
         e.affectsConfiguration("vscode-translucent.leftSidebarContainerBackgroundOpacity") ||
-        e.affectsConfiguration("vscode-translucent.rightSidebarContainerBackgroundOpacity")
+        e.affectsConfiguration("vscode-translucent.rightSidebarContainerBackgroundOpacity") ||
+        e.affectsConfiguration("vscode-translucent.applyToJupyterNotebook")
       ) {
         const paths = getInstallPaths();
         try {

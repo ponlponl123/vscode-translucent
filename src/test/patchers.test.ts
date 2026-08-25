@@ -142,6 +142,7 @@ describe("Patcher Tests", () => {
         editorContainerBackgroundOpacity: 0.5,
         leftSidebarContainerBackgroundOpacity: 0.4,
         rightSidebarContainerBackgroundOpacity: 0.6,
+        applyToJupyterNotebook: true,
       });
       let patchedContent = fs.readFileSync(filePath, "utf-8");
       assert.strictEqual(workbenchHtml.isPatched(patchedContent), true);
@@ -149,6 +150,7 @@ describe("Patcher Tests", () => {
       assert.ok(patchedContent.includes("50%"));
       assert.ok(patchedContent.includes("40%"));
       assert.ok(patchedContent.includes("60%"));
+      assert.ok(patchedContent.includes("--vscode-notebook-editorBackground: transparent !important;"));
 
       workbenchHtml.unpatch(filePath);
       const unpatchedContent = fs.readFileSync(filePath, "utf-8");

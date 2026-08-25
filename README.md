@@ -37,6 +37,7 @@ You can customize opacity, borders, and backdrop effect in your VS Code settings
 | `vscode-translucent.editorContainerBorderVisible` | `boolean` | `true` | Controls whether the editor container border is visible. |
 | `vscode-translucent.leftSidebarContainerBorderVisible` | `boolean` | `true` | Controls whether the left sidebar container border is visible. |
 | `vscode-translucent.rightSidebarContainerBorderVisible` | `boolean` | `true` | Controls whether the right sidebar (auxiliary bar) container border is visible. |
+| `vscode-translucent.applyToJupyterNotebook` | `boolean` | `false` | Forces `--vscode-notebook-editorBackground` to transparent for Jupyter/Notebook editors. |
 
 > Changing opacity or border settings will prompt you to **Reload Window** (`Ctrl + R`) to apply changes immediately.
 
