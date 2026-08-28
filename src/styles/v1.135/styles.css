@@ -1,0 +1,13 @@
+.modern-ui .part.auxiliarybar .monaco-pane-view .pane,
+.modern-ui .part.sidebar .monaco-pane-view .pane {
+    background-color: transparent !important;
+}
+
+
+.modern-ui.floating-panels .part.sidebar {
+    background-color: color-mix(in srgb, var(--vscode-sideBar-background, var(--vscode-panel-background)) var(--vscode-translucent-left-sidebar-pct), transparent) !important;
+}
+
+.modern-ui.floating-panels .part.auxiliarybar {
+    background-color: color-mix(in srgb, var(--vscode-sideBar-background, var(--vscode-panel-background)) var(--vscode-translucent-right-sidebar-pct), transparent) !important;
+}
