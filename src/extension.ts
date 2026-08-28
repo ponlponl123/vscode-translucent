@@ -1,6 +1,10 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
-import { enableTranslucent, disableTranslucent } from "./commands/translucent";
+import {
+  enableTranslucent,
+  disableTranslucent,
+  handleError,
+} from "./commands/translucent";
 import { getInstallPaths } from "./utils/paths";
 import { getConfig } from "./utils/config";
 import * as workbenchHtml from "./patchers/workbench-html";
@@ -17,45 +21,18 @@ export function activate(context: vscode.ExtensionContext) {
       disableTranslucent,
     ),
     vscode.workspace.onDidChangeConfiguration(async (e) => {
-      if (
-        e.affectsConfiguration("vscode-translucent.opacity") ||
-        e.affectsConfiguration("vscode-translucent.editorContainerBorderVisible") ||
-        e.affectsConfiguration("vscode-translucent.leftSidebarContainerBorderVisible") ||
-        e.affectsConfiguration("vscode-translucent.rightSidebarContainerBorderVisible") ||
-        e.affectsConfiguration("vscode-translucent.editorContainerBackgroundOpacity") ||
-        e.affectsConfiguration("vscode-translucent.leftSidebarContainerBackgroundOpacity") ||
-        e.affectsConfiguration("vscode-translucent.rightSidebarContainerBackgroundOpacity") ||
-        e.affectsConfiguration("vscode-translucent.applyToJupyterNotebook")
-      ) {
-        const paths = getInstallPaths();
-        try {
-          if (fs.existsSync(paths.workbenchHtml)) {
-            const content = fs.readFileSync(paths.workbenchHtml, "utf-8");
-            if (workbenchHtml.isPatched(content)) {
-              const config = getConfig();
-              workbenchHtml.patch(paths.workbenchHtml, config);
-              const selection = await vscode.window.showInformationMessage(
-                "Translucent appearance updated. Reload window to apply changes.",
-                "Reload Window",
-              );
-              if (selection === "Reload Window") {
-                vscode.commands.executeCommand("workbench.action.reloadWindow");
-              }
-            }
-          }
-        } catch (err: unknown) {
-          const msg = err instanceof Error ? err.message : String(err);
-          vscode.window.showErrorMessage(`Failed to update appearance: ${msg}`);
-        }
+      if (!e.affectsConfiguration("vscode-translucent")) {
+        return;
       }
 
+      const paths = getInstallPaths();
+      const config = getConfig();
+
       if (e.affectsConfiguration("vscode-translucent.effect")) {
-        const paths = getInstallPaths();
         try {
           if (fs.existsSync(paths.mainJs)) {
             const content = fs.readFileSync(paths.mainJs, "utf-8");
             if (mainJs.isPatched(content)) {
-              const config = getConfig();
               mainJs.patch(paths.mainJs, config.effect);
               vscode.window.showInformationMessage(
                 "Translucent effect updated. A full restart is required.",
@@ -63,9 +40,27 @@ export function activate(context: vscode.ExtensionContext) {
             }
           }
         } catch (err: unknown) {
-          const msg = err instanceof Error ? err.message : String(err);
-          vscode.window.showErrorMessage(`Failed to update effect: ${msg}`);
+          handleError("update effect", err);
         }
+        return;
+      }
+
+      try {
+        if (fs.existsSync(paths.workbenchHtml)) {
+          const content = fs.readFileSync(paths.workbenchHtml, "utf-8");
+          if (workbenchHtml.isPatched(content)) {
+            workbenchHtml.patch(paths.workbenchHtml, config);
+            const selection = await vscode.window.showInformationMessage(
+              "Translucent appearance updated. Reload window to apply changes.",
+              "Reload Window",
+            );
+            if (selection === "Reload Window") {
+              vscode.commands.executeCommand("workbench.action.reloadWindow");
+            }
+          }
+        }
+      } catch (err: unknown) {
+        handleError("update appearance", err);
       }
     }),
   );

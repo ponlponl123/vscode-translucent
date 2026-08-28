@@ -20,4 +20,7 @@ function copyDir(src, dest) {
   }
 }
 
-copyDir(path.join(__dirname, "src", "styles"), path.join(__dirname, "out", "styles"));
+copyDir(
+  path.join(__dirname, "..", "src", "styles"),
+  path.join(__dirname, "..", "out", "styles")
+);

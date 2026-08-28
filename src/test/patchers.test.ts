@@ -205,6 +205,17 @@ describe("Patcher Tests", () => {
         );
       }
     });
+    it("throws error when </head> is missing in workbench.html", () => {
+      const filePath = path.join(tmpDir, "invalid-workbench.html");
+      fs.writeFileSync(filePath, "<html><body>No Head Tag</body></html>", "utf-8");
+      assert.throws(() => workbenchHtml.patch(filePath), /Could not find <\/head>/);
+    });
+
+    it("handles unpatching an unpatched file gracefully", () => {
+      const filePath = path.join(tmpDir, "clean-workbench.html");
+      fs.writeFileSync(filePath, "<html><head></head><body></body></html>", "utf-8");
+      assert.strictEqual(workbenchHtml.unpatch(filePath), false);
+    });
   });
 });
 
