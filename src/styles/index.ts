@@ -14,6 +14,8 @@ import borderRightSidebarHiddenCss from "./global/border/right-sidebar-hidden.cs
 import widgetsCss from "./global/widgets.css";
 import notebookCss from "./global/notebook.css";
 
+import antigravityAgentSidePanelCss from "./global/antigravity/agentsidepanel.css";
+
 import v1135Css from "./v1.135/styles.css";
 import v1134GridCss from "./v1.134/grid.css";
 import v1134ModalsCss from "./v1.134/modals.css";
@@ -54,6 +56,7 @@ export function buildCSS(opts: CSSOptions = 0.75): string {
   chunks.push(editorCss);
   chunks.push(sidebarsCss);
   chunks.push(borderGeneralCss);
+  chunks.push(antigravityAgentSidePanelCss);
 
   if (!normalized.editorBorderVisible) {
     chunks.push(borderEditorHiddenCss);

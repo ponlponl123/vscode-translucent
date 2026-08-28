@@ -12,7 +12,7 @@ export async function enableTranslucent() {
     mainJs.patch(paths.mainJs, config.effect);
     workbenchHtml.patch(paths.workbenchHtml, config);
     workbenchJs.patch(paths.workbenchJs);
-    await promptRestart();
+    void promptRestart();
   } catch (err: unknown) {
     handleError("enable", err);
   }
@@ -31,7 +31,7 @@ export async function disableTranslucent() {
       );
       return;
     }
-    await promptRestart();
+    void promptRestart();
   } catch (err: unknown) {
     handleError("disable", err);
   }
@@ -39,8 +39,12 @@ export async function disableTranslucent() {
 
 async function promptRestart() {
   const action = await vscode.window.showInformationMessage(
-    "Translucent effect applied. A full restart is required.",
+    "Translucent effect applied. A restart is required.",
+    "Restart"
   );
+  if (action === "Restart") {
+    vscode.commands.executeCommand("workbench.action.reloadWindow");
+  }
 }
 
 function handleError(action: string, err: unknown) {

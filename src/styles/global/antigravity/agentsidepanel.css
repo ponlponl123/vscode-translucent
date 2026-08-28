@@ -1,0 +1,11 @@
+.antigravity-agent-side-panel [id="conversation"] [aria-label="Message history"] {
+    mask-image: linear-gradient(transparent, black 20%);
+}
+
+.antigravity-agent-side-panel [id="conversation"] [role="article"][aria-label="User message"] {
+    background-color: transparent !important;
+}
+
+.antigravity-agent-side-panel [id="conversation"] [role="article"][aria-label="User message"]::after {
+    opacity: 0;
+}
