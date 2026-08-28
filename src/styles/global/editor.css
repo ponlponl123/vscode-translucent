@@ -1,0 +1,20 @@
+.monaco-workbench .part.editor,
+.monaco-workbench .part.editor>.content,
+.monaco-workbench .part.editor>.content .editor-group-container {
+  background-color: color-mix(in srgb, var(--vscode-editor-background, #1e1e1e) var(--vscode-translucent-editor-pct), transparent) !important;
+}
+.monaco-editor,
+.monaco-editor .margin,
+.monaco-breadcrumbs,
+.monaco-workbench .part.editor>.content .editor-group-container>.title,
+.monaco-workbench .part.editor>.content .editor-group-container.active>.title .tabs-container>.tab,
+.editor-group-container > .editor-container .overflow-guard > .monaco-scrollable-element > .monaco-editor-background,
+.monaco-workbench .part.editor>.content .editor-group-container>.title>.tabs-and-actions-container.tabs-border-bottom:after {
+  background-color: transparent !important;
+}
+.monaco-workbench .part.editor>.content .editor-group-container.active>.title .tabs-container>.tab.active {
+  background-color: var(--vscode-tab-activeBackground) !important;
+}
+.monaco-editor .scroll-decoration {
+  box-shadow: none !important;
+}

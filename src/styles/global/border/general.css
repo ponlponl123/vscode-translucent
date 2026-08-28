@@ -1,0 +1,6 @@
+/* Global titlebar & pane headers */
+.monaco-workbench .part.titlebar,
+.monaco-pane-view .pane>.pane-header,
+.monaco-workbench .part.panel.bottom .composite.title {
+  border: none !important;
+}

@@ -160,6 +160,41 @@ describe("Patcher Tests", () => {
         sampleHtml.replace(/\s+/g, " ").trim()
       );
     });
+
+    it("applies version-specific styles dynamically across entire version range", () => {
+      const filePath = path.join(tmpDir, "workbench.html");
+      fs.writeFileSync(filePath, `<html><head></head><body></body></html>`, "utf-8");
+
+      // Legacy versions (< 1.134.0)
+      const legacyVersions = ["1.110.0", "1.110.1", "v1.110.1", "1.132.0", "1.133.0", "1.133.9"];
+      for (const ver of legacyVersions) {
+        workbenchHtml.patch(filePath, { opacity: 0.7, vscodeVersion: ver });
+        const content = fs.readFileSync(filePath, "utf-8");
+        assert.ok(
+          !content.includes(":not(.monaco-modal-editor-block)"),
+          `Expected ${ver} NOT to include modal block filter`
+        );
+        assert.ok(
+          content.includes(".monaco-workbench .part.editor>.content .editor-group-container>.editor-container"),
+          `Expected ${ver} to include legacy editor selector`
+        );
+      }
+
+      // Modern versions (>= 1.134.0) and undefined (defaults to latest)
+      const modernVersions = ["1.134.0", "1.134.1", "v1.134.0", "1.135.0", "1.135.0-insider", "1.200.0", undefined];
+      for (const ver of modernVersions) {
+        workbenchHtml.patch(filePath, { opacity: 0.7, vscodeVersion: ver });
+        const content = fs.readFileSync(filePath, "utf-8");
+        assert.ok(
+          content.includes("monaco-grid-view"),
+          `Expected ${ver ?? "undefined"} to include monaco-grid-view`
+        );
+        assert.ok(
+          content.includes(":not(.monaco-modal-editor-block)"),
+          `Expected ${ver ?? "undefined"} to include modal block filter`
+        );
+      }
+    });
   });
 });
 

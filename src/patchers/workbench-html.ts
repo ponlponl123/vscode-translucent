@@ -4,8 +4,20 @@ import { buildCSS, CSSOptions } from "../utils/css";
 const HTML_MARKER = "<!-- vscode-translucent-patched -->";
 const HTML_MARKER_END = "<!-- /vscode-translucent-patched -->";
 
+let detectedVersion: string | undefined;
+try {
+  const vscode = require("vscode");
+  detectedVersion = vscode?.version;
+} catch {
+  // Fallback for non-vscode runtime / test runner
+}
+
 function getStyleBlock(options?: CSSOptions | number): string {
-  return `\n\t\t${HTML_MARKER}\n\t\t<style>${buildCSS(options)}</style>\n\t\t${HTML_MARKER_END}`;
+  const opts = typeof options === "number"
+    ? { opacity: options, vscodeVersion: detectedVersion }
+    : { vscodeVersion: detectedVersion, ...options };
+
+  return `\n\t\t${HTML_MARKER}\n\t\t<style>${buildCSS(opts)}</style>\n\t\t${HTML_MARKER_END}`;
 }
 
 export function isPatched(content: string): boolean {

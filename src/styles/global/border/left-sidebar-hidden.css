@@ -1,0 +1,8 @@
+.monaco-workbench .part.sidebar,
+div#workbench.parts.sidebar,
+.monaco-workbench .part.sidebar.left,
+.monaco-workbench .sidebar {
+  border: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}

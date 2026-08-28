@@ -1,0 +1,3 @@
+.monaco-workbench > :not(.monaco-modal-editor-block) .part.editor>.content .editor-group-container>.editor-container {
+  background-color: transparent !important;
+}

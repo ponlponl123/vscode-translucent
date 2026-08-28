@@ -1,0 +1,7 @@
+body>div[role="application"]>div.monaco-grid-view,
+.pane.vertical.expanded,
+.pane.expanded.vertical,
+.pane.chat-viewpane-container.expanded.vertical.merged-header {
+  background-color: transparent !important;
+  background: transparent !important;
+}

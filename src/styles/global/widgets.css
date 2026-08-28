@@ -1,0 +1,57 @@
+.monaco-workbench .part.panel,
+.monaco-workbench .part>.content,
+.monaco-workbench .part.titlebar,
+.monaco-workbench .part.statusbar,
+.monaco-list .monaco-list-rows,
+.monaco-list.list_id_2 .monaco-list-rows,
+.monaco-list.list_id_3 .monaco-list-rows,
+.monaco-list.list_id_4 .monaco-list-rows,
+.monaco-list.list_id_5 .monaco-list-rows,
+.monaco-list.list_id_7 .monaco-list-rows,
+.monaco-workbench .part.statusbar:not(:focus).status-border-top:after,
+.monaco-workbench .pane-body.integrated-terminal .xterm {
+  background-color: transparent !important;
+}
+.monaco-menu-container,
+.monaco-editor .sticky-widget,
+.monaco-list .monaco-scrollable-element .monaco-tree-sticky-container {
+  backdrop-filter: blur(16px) !important;
+}
+.invisible.scrollbar.vertical:not(.fade)>.slider {
+  margin-left: 4px;
+}
+.invisible.scrollbar.vertical>.slider {
+  width: 8px !important;
+}
+canvas.decorationsOverviewRuler {
+  width: 12px !important;
+}
+.monaco-list-row,
+.monaco-editor .find-widget,
+.monaco-editor .sticky-widget,
+.monaco-editor .minimap canvas,
+canvas.decorationsOverviewRuler,
+.monaco-pane-view .pane>.pane-header,
+.monaco-list.list_id_4 .monaco-list-row,
+.monaco-list.list_id_5 .monaco-list-row,
+.invisible.scrollbar.vertical.fade .slider,
+.open-editors .monaco-list .monaco-list-row,
+.monaco-list.mouse-support .monaco-list-row,
+.monaco-list .monaco-scrollable-element .monaco-tree-sticky-container,
+.monaco-workbench .part>.title>.title-actions .start-debug-action-item,
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container,
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab,
+.monaco-workbench .part.panel .pane-body.integrated-terminal .terminal-outer-container {
+  border-radius: 6px;
+}
+.monaco-editor .sticky-widget {
+  background-color: var(--vscode-editorStickyScrollGutter-background);
+}
+.monaco-scrollable-element>.shadow.top,
+.monaco-scrollable-element>.shadow.top-left-corner,
+.monaco-list .monaco-scrollable-element .monaco-tree-sticky-container .monaco-tree-sticky-container-shadow {
+  display: none !important;
+}
+.minimap > canvas {
+  opacity: var(--vscode-translucent-base-opacity);
+}

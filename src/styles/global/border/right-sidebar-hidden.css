@@ -1,0 +1,10 @@
+.monaco-workbench .part.auxiliarybar,
+div#workbench.parts.auxiliarybar,
+.monaco-workbench .auxiliarybar,
+.monaco-workbench .part.sidebar.right,
+.style-override.floating-panels .part.auxiliarybar,
+.monaco-workbench.floating-panels .part.floating-part-outer-right {
+  border: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}

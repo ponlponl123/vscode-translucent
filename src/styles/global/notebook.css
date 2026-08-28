@@ -1,0 +1,7 @@
+:root,
+.monaco-workbench,
+.notebookOverlay,
+.notebook-editor,
+.notebook-editor-container {
+  --vscode-notebook-editorBackground: transparent !important;
+}

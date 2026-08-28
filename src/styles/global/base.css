@@ -1,0 +1,20 @@
+body {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+#monaco-parts-splash,
+#monaco-parts-splash > div {
+  background-color: transparent !important;
+}
+.monaco-workbench {
+  background-color: color-mix(in srgb, var(--vscode-editor-background, #1e1e1e) var(--vscode-translucent-base-pct), transparent) !important;
+}
+.monaco-list-row,
+.monaco-workbench .activitybar>.content :not(.monaco-menu)>.monaco-action-bar .action-item,
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab,
+.monaco-button,
+.monaco-inputbox,
+.monaco-pane-view .pane>.pane-header,
+.quick-input-list-entry {
+  transition: background-color .24s;
+}
