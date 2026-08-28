@@ -1,18 +1,7 @@
 import * as vscode from "vscode";
+import type { EffectType, TranslucentConfig } from "../types";
 
-export type EffectType = "mica" | "acrylic" | "tabbed" | "auto" | "none";
-
-export interface TranslucentConfig {
-  effect: EffectType;
-  opacity: number;
-  editorContainerBorderVisible: boolean;
-  leftSidebarContainerBorderVisible: boolean;
-  rightSidebarContainerBorderVisible: boolean;
-  editorContainerBackgroundOpacity: number;
-  leftSidebarContainerBackgroundOpacity: number;
-  rightSidebarContainerBackgroundOpacity: number;
-  applyToJupyterNotebook: boolean;
-}
+export type { EffectType, TranslucentConfig };
 
 export function getConfig(): TranslucentConfig {
   const cfg = vscode.workspace.getConfiguration("vscode-translucent");

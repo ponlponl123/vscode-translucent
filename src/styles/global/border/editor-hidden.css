@@ -1,0 +1,6 @@
+.monaco-workbench .part.editor,
+.monaco-workbench .part.editor>.content .editor-group-container,
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab {
+  border: none !important;
+  box-shadow: none !important;
+}

@@ -1,0 +1,19 @@
+div#workbench.parts.sidebar,
+.monaco-workbench .part.sidebar,
+.style-override .monaco-pane-view .pane,
+.style-override.floating-panels .part.sidebar {
+  background-color: color-mix(in srgb, var(--vscode-sideBar-background, var(--vscode-panel-background)) var(--vscode-translucent-left-sidebar-pct), transparent) !important;
+}
+div#workbench.parts.auxiliarybar,
+.monaco-workbench .part.auxiliarybar,
+.style-override.floating-panels .part.auxiliarybar {
+  background-color: color-mix(in srgb, var(--vscode-sideBar-background, var(--vscode-panel-background)) var(--vscode-translucent-right-sidebar-pct), transparent) !important;
+}
+.monaco-workbench .part.sidebar>.title,
+.monaco-workbench .part.auxiliarybar>.title {
+  background-color: transparent !important;
+}
+.monaco-workbench .part.sidebar>.content {
+  padding-right: 4px;
+  box-sizing: border-box;
+}
