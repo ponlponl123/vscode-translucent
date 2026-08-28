@@ -1,11 +1,11 @@
 import type { CSSOptions, NormalizedCSSOptions } from "../types";
 
-export function normalizeOptions(opts: CSSOptions = 0.75): NormalizedCSSOptions {
+export function normalizeOptions(opts: CSSOptions = 0.4): NormalizedCSSOptions {
   const o = typeof opts === "number" ? { opacity: opts } : opts;
-  const baseOpacity = Math.max(0, Math.min(1, o.opacity ?? 0.75));
+  const baseOpacity = Math.max(0, Math.min(1, o.opacity ?? 0.4));
   const editorOpacity = Math.max(0, Math.min(1, o.editorContainerBackgroundOpacity ?? baseOpacity));
-  const leftSidebarOpacity = Math.max(0, Math.min(1, o.leftSidebarContainerBackgroundOpacity ?? baseOpacity));
-  const rightSidebarOpacity = Math.max(0, Math.min(1, o.rightSidebarContainerBackgroundOpacity ?? baseOpacity));
+  const leftSidebarOpacity = Math.max(0, Math.min(1, o.leftSidebarContainerBackgroundOpacity ?? 0.8));
+  const rightSidebarOpacity = Math.max(0, Math.min(1, o.rightSidebarContainerBackgroundOpacity ?? 0.8));
 
   return {
     baseOpacity,
