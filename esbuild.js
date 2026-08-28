@@ -17,12 +17,7 @@ const copyImagesPlugin = {
 			if (!fs.existsSync(dest)) {
 				fs.mkdirSync(dest, { recursive: true });
 			}
-			fs.readdirSync(source).forEach(file => {
-				fs.copyFileSync(
-					path.join(source, file),
-					path.join(dest, file)
-				);
-			});
+			fs.cpSync(source, dest, { recursive: true });
 			console.log('Copied images to dist/images');
 		});
 	},

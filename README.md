@@ -1,78 +1,149 @@
-# vscode-translucent (WIP)
+# VS Code Translucent ✨
+
+Bring sleek translucent aesthetics and background blur to your VS Code editor.
+
+> [!WARNING]
+> **Status:** Unstable (Preview)
+>
+> | OS | VS Code Version | Status |
+> | :--- | :--- | :---: |
+> | Windows 11 `25H2` | `v1.107.0` | ✅ Tested |
+> | Windows 11 `25H2` | `v1.110.0` | ✅ Tested |
+> | Windows 11 `25H2` | `v1.134.0` | ✅ Tested |
+> | Windows 11 `25H2` | `v1.135.0` | ✅ Tested |
+
+---
+
+## 📸 Preview
+
+<details open>
+<summary><b>✨ Modern UI Preview (Click to expand / collapse)</b></summary>
+<br>
+
+| Theme | Preview |
+| :--- | :--- |
+| **Dark Modern** | ![](./images/modern-ui-vscode/image-darkModern.png) |
+| **Light Modern** | ![](./images/modern-ui-vscode/image-lightModern.png) |
+| **Dracula** | ![](./images/modern-ui-vscode/image-darkDracula-blankpage.png) |
+| **Dark Red** | ![](./images/modern-ui-vscode/image-darkRed.png) |
+| **Tomorrow Night Blue** | ![](./images/modern-ui-vscode/image-darkTomorrowNightBlue.png) |
+| **Light Solarized** | ![](./images/modern-ui-vscode/image-lightSolarized.png) |
+
+</details>
+
+<details>
+<summary><b>🎨 Customization Preview (Click to expand / collapse)</b></summary>
+<br>
+
+| Configuration | Preview |
+| :--- | :--- |
+| **Default** | ![](./images/modern-ui-vscode/customization/image-default.png) |
+| **Fully Transparent** | ![](./images/modern-ui-vscode/customization/image-fullytransparent.png) |
+| **More Editor Opaque** | ![](./images/modern-ui-vscode/customization/image-moreEditorOpaque.png) |
+| **More Left Sidebar Opaque** | ![](./images/modern-ui-vscode/customization/image-moreLeftSidebarOpaque.png) |
+| **More Right Sidebar Opaque** | ![](./images/modern-ui-vscode/customization/image-moreRightSidebarOpaque.png) |
+| **More Sidebar Opaque** | ![](./images/modern-ui-vscode/customization/image-moreSidebarOpaque.png) |
+
+> *and more / Fully customization for your style ✨*
+
+</details>
+
+<details>
+<summary><b>🏛️ Legacy VS Code Preview (Click to expand / collapse)</b></summary>
+<br>
+
+| Theme | Preview |
+| :--- | :--- |
+| **Dark Theme** | ![](./images/legacy-vscode/image-darktheme.png) |
+| **Dark Green Theme** | ![](./images/legacy-vscode/image-darkgreentheme.png) |
+| **Light Theme** | ![](./images/legacy-vscode/image-lighttheme.png) |
+| **Light Orange Theme** | ![](./images/legacy-vscode/image-lightorangetheme.png) |
+
+</details>
+
+---
+
+## 🚀 Quick Start
 
 > [!IMPORTANT]
-> **UNRELEASED:**
-> Only tested on windows 11 25H2 / v1.134.0, Electron 42.7.1, Node.js 24.18.0
+> **Prerequisite:** This extension makes VS Code's workbench transparent, but **requires an external tool** to force backdrop effects (blur / mica / acrylic) on Windows desktop windows — such as [Mica For Everyone](https://github.com/MicaForEveryone/MicaForEveryone), Windhawk Mods (e.g., [Translucent Windows](https://windhawk.net/mods/translucent-windows)), or similar utilities.
 
-This extension makes VS Code transparent with a blurred background.
+1. **Install** this extension from the VS Code Marketplace.
+2. Open the Command Palette (`Ctrl + Shift + P`) and run:
+   ```
+   Translucent: Enable
+   ```
+3. **Restart VS Code** completely (a full relaunch, not just reloading the window).
+4. Configure your preferred window effect tool:
+   - **Mica For Everyone**: Add a process rule for `Code`, and under the **Advanced** tab, check **Enable blur behind**.
+   - **Windhawk**: Enable and configure the **Translucent Windows** mod for `Code.exe`.
+5. Enjoy your translucent workspace!
 
-## Preview
+---
 
-![](./images/image-darktheme.png)
-![](./images/image-darkgreentheme.png)
-![](./images/image-lighttheme.png)
-![](./images/image-lightorangetheme.png)
+## ⚙️ Configuration
 
-## Installation
-
-For now, this extension should be use with [Mica For Everyone](https://github.com/MicaForEveryone/MicaForEveryone).
-
-1. Install this extension to your vscode.
-2. use command `Translucent: Enable` to enable the effect. by pressing `Ctrl + Shift + P` and type `Translucent: Enable`.
-3. Restart your vscode. (not just reload window)
-4. Add process `Code` to your [Mica For Everyone](https://github.com/MicaForEveryone/MicaForEveryone).
-5. In the **Advanced** section, check the **Enable blur behind**
-6. Enjoy!
-
-## Configuration
-
-You can customize opacity, borders, and backdrop effect in your VS Code settings (`Ctrl + ,`):
+Tune opacity levels, container borders, and UI elements directly in your VS Code Settings (`Ctrl + ,`):
 
 | Setting | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `vscode-translucent.opacity` | `number` (`0.0`-`1.0`) | `0.75` | Default background opacity of workbench UI. |
-| `vscode-translucent.editorContainerBackgroundOpacity` | `number` (`0.0`-`1.0`) | `0.75` | Background opacity of the editor container. |
-| `vscode-translucent.leftSidebarContainerBackgroundOpacity` | `number` (`0.0`-`1.0`) | `0.75` | Background opacity of the left sidebar container. |
-| `vscode-translucent.rightSidebarContainerBackgroundOpacity` | `number` (`0.0`-`1.0`) | `0.75` | Background opacity of the right sidebar (auxiliary bar) container. |
-| `vscode-translucent.editorContainerBorderVisible` | `boolean` | `true` | Controls whether the editor container border is visible. |
-| `vscode-translucent.leftSidebarContainerBorderVisible` | `boolean` | `true` | Controls whether the left sidebar container border is visible. |
-| `vscode-translucent.rightSidebarContainerBorderVisible` | `boolean` | `true` | Controls whether the right sidebar (auxiliary bar) container border is visible. |
-| `vscode-translucent.applyToJupyterNotebook` | `boolean` | `false` | Forces `--vscode-notebook-editorBackground` to transparent for Jupyter/Notebook editors. |
+| :--- | :--- | :---: | :--- |
+| `vscode-translucent.opacity` | `number` (`0.0`-`1.0`) | `0.4` | Default background opacity for workbench UI. |
+| `vscode-translucent.editorContainerBackgroundOpacity` | `number` (`0.0`-`1.0`) | `0.4` | Background opacity for the editor container. |
+| `vscode-translucent.leftSidebarContainerBackgroundOpacity` | `number` (`0.0`-`1.0`) | `0.8` | Background opacity for the primary sidebar. |
+| `vscode-translucent.rightSidebarContainerBackgroundOpacity` | `number` (`0.0`-`1.0`) | `0.8` | Background opacity for the secondary / auxiliary bar. |
+| `vscode-translucent.editorContainerBorderVisible` | `boolean` | `true` | Show or hide the editor container border. |
+| `vscode-translucent.leftSidebarContainerBorderVisible` | `boolean` | `true` | Show or hide the primary sidebar border. |
+| `vscode-translucent.rightSidebarContainerBorderVisible` | `boolean` | `true` | Show or hide the secondary sidebar border. |
+| `vscode-translucent.applyToJupyterNotebook` | `boolean` | `false` | Force transparent background on Jupyter notebook cells. |
 
-> Changing opacity or border settings will prompt you to **Reload Window** (`Ctrl + R`) to apply changes immediately.
+> [!TIP]
+> After adjusting opacity or border options, reload window (`Ctrl + R`) to apply changes.
 
-## Known Issues
+---
 
-### Flickering after using [Mica For Everyone](https://github.com/MicaForEveryone/MicaForEveryone)
+## 🛠️ Troubleshooting & Known Issues
 
-To fix this issue, add the `--disable-gpu-compositing` flag to your VS Code shortcut target.
+### 1. Window Flickering with External Blur Tools
+If you experience window flickering with tools like Mica For Everyone or Windhawk, disable GPU compositing by adding `--disable-gpu-compositing` to your VS Code launch target:
 
-**Example:**
-
-```
+```bat
 "C:\Users\<YourUsername>\AppData\Local\Programs\Microsoft VS Code\Code.exe" --disable-gpu-compositing
 ```
-
 > **Note:** Replace `<YourUsername>` with your actual Windows username.
 
-### Terminal font rendering issue
+---
 
-![Terminal font rendering issue](./images/image-terminalfont-render.png)
+### 2. Terminal Font Rendering Glitches
 
-VS Code tries to use your GPU to make the terminal faster, but it can cause these exact visual artifacts. Turning it off usually solves the problem instantly.
+![Terminal font rendering issue](./images/legacy-vscode/image-terminalfont-render.png)
 
-1. Open your VS Code Settings by pressing `Ctrl + ,`.
-2. In the search bar at the top, type: `terminal.integrated.gpuAcceleration`
-3. Change the dropdown setting from `auto` or `on` to `off`.
-4. Close your current terminal and open a new one (or restart VS Code completely).
+VS Code's hardware-accelerated terminal canvas may cause font artifacts when backdrop blur is active. Disabling terminal GPU acceleration resolves this cleanly:
 
-![Terminal font rendering solved](./images/image-terminal-gpu-acc.png)
+1. Open Settings (`Ctrl + ,`).
+2. Search for: `terminal.integrated.gpuAcceleration`
+3. Set the value to `off`.
+4. Relaunch your terminal or restart VS Code.
 
-## Uninstall
+![Terminal font rendering solved](./images/legacy-vscode/image-terminal-gpu-acc.png)
 
-To uninstall this extension, you need to use command `Translucent: Disable` to disable the effect. by pressing `Ctrl + Shift + P` and type `Translucent: Disable`.
-Then remove process `Code` from your [Mica For Everyone](https://github.com/MicaForEveryone/MicaForEveryone).
-And now you can uninstall this extension.
+---
 
-**If u love this project u can support me by just give me some a cup of coffee!**
-[Buy Me a Coffee!](https://buymeacoffee.com/ponlponl123)
+## 🗑️ Uninstallation
+
+To cleanly remove the extension:
+
+1. Open Command Palette (`Ctrl + Shift + P`) and run:
+   ```
+   Translucent: Disable
+   ```
+2. Remove any custom rules or hooks for `Code` in your backdrop tool (e.g., **Mica For Everyone** or **Windhawk**).
+3. Uninstall the extension from the VS Code Extensions tab.
+
+---
+
+## ☕ Support
+
+If you enjoy using this extension and find it helpful in your daily setup, feel free to support future development:
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-☕-orange?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/ponlponl123)
+

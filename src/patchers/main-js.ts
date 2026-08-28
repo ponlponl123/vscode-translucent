@@ -37,15 +37,12 @@ export function patch(filePath: string, effect: EffectType): boolean {
   );
 
   const viewBgRe = /((?:this|[\w$]+)(?:\.[\w$]+)?\.setBackgroundColor\()"#FFFFFF"\)/;
-  if (!viewBgRe.test(content)) {
-    throw new Error(
-      `Could not find expected code in main.js for patch: *.setBackgroundColor("#FFFFFF")`
+  if (viewBgRe.test(content)) {
+    content = content.replace(
+      viewBgRe,
+      `$1"#00000000")/*${MARKER}*/`
     );
   }
-  content = content.replace(
-    viewBgRe,
-    `$1"#00000000")/*${MARKER}*/`
-  );
 
   const expDarkRe = /experimentalDarkMode\s*:\s*(!0|true)/;
   if (!expDarkRe.test(content)) {

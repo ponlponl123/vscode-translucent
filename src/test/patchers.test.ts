@@ -54,6 +54,16 @@ describe("Patcher Tests", () => {
           e._view.setBackgroundColor("#FFFFFF");
         `,
       },
+      {
+        name: "Legacy variant (v1.107.0 without view setBackgroundColor)",
+        content: `
+          const win = new BrowserWindow({
+            backgroundColor: n.getBackgroundColor(),
+            experimentalDarkMode: !0
+          });
+          n.setBackgroundColor(t.colorInfo.background);
+        `,
+      },
     ];
 
     for (const variant of sampleMainJsVariants) {
