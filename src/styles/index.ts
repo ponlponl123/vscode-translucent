@@ -14,6 +14,7 @@ import borderRightSidebarHiddenCss from "./global/border/right-sidebar-hidden.cs
 import widgetsCss from "./global/widgets.css";
 import notebookCss from "./global/notebook.css";
 
+import v1135Css from "./v1.135/styles.css";
 import v1134GridCss from "./v1.134/grid.css";
 import v1134ModalsCss from "./v1.134/modals.css";
 import v1110LegacyEditorCss from "./v1.110/legacy-editor.css";
@@ -30,13 +31,13 @@ function getVariablesBlock(opts: NormalizedCSSOptions): string {
 
 function getVersionStyles(opts: NormalizedCSSOptions): string[] {
   const version = opts.vscodeVersion;
-  const isLegacy = version ? compareVersions(version, "1.134.0") < 0 : false;
-
-  if (isLegacy) {
+  if (version && compareVersions(version, "1.134.0") < 0) {
     return [v1110LegacyEditorCss];
   }
-
-  return [v1134GridCss, v1134ModalsCss];
+  if (version && compareVersions(version, "1.135.0") < 0) {
+    return [v1134GridCss, v1134ModalsCss];
+  }
+  return [v1134GridCss, v1134ModalsCss, v1135Css];
 }
 
 export function buildCSS(opts: CSSOptions = 0.75): string {
