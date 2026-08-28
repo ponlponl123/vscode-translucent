@@ -47,13 +47,13 @@ async function promptRestart() {
   }
 }
 
-function handleError(action: string, err: unknown) {
+export function handleError(action: string, err: unknown) {
   const msg = err instanceof Error ? err.message : String(err);
   if (msg.includes("EPERM") || msg.includes("EACCES")) {
     vscode.window.showErrorMessage(
       "Permission denied. Try running VS Code as Administrator.",
     );
   } else {
-    vscode.window.showErrorMessage(`Failed to ${action} translucent: ${msg}`);
+    vscode.window.showErrorMessage(`Failed to ${action}: ${msg}`);
   }
 }
