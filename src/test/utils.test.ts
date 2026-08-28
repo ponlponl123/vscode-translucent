@@ -19,9 +19,11 @@ describe("Utils & CSS Builder Tests", () => {
   describe("normalizeOptions", () => {
     it("handles number shorthand and clamps boundaries", () => {
       const def = normalizeOptions();
-      assert.strictEqual(def.baseOpacity, 0.75);
-      assert.strictEqual(def.basePct, 75);
-      assert.strictEqual(def.editorPct, 75);
+      assert.strictEqual(def.baseOpacity, 0.4);
+      assert.strictEqual(def.basePct, 40);
+      assert.strictEqual(def.editorPct, 40);
+      assert.strictEqual(def.leftSidebarPct, 80);
+      assert.strictEqual(def.rightSidebarPct, 80);
       assert.strictEqual(def.editorBorderVisible, true);
       assert.strictEqual(def.applyToJupyterNotebook, false);
 

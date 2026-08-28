@@ -78,7 +78,7 @@
           "vscode-translucent.opacity": {
             "order": 2,
             "type": "number",
-            "default": 0.75,
+            "default": 0.4,
             "minimum": 0,
             "maximum": 1,
             "description": "Default background opacity of the workbench UI (0 = fully transparent, 1 = opaque)."
@@ -92,7 +92,7 @@
           "vscode-translucent.editorContainerBackgroundOpacity": {
             "order": 1,
             "type": "number",
-            "default": 0.75,
+            "default": 0.4,
             "minimum": 0,
             "maximum": 1,
             "description": "Background opacity of the editor container (0 = fully transparent, 1 = opaque)."
@@ -100,7 +100,7 @@
           "vscode-translucent.leftSidebarContainerBackgroundOpacity": {
             "order": 2,
             "type": "number",
-            "default": 0.75,
+            "default": 0.8,
             "minimum": 0,
             "maximum": 1,
             "description": "Background opacity of the left sidebar container (0 = fully transparent, 1 = opaque)."
@@ -108,7 +108,7 @@
           "vscode-translucent.rightSidebarContainerBackgroundOpacity": {
             "order": 3,
             "type": "number",
-            "default": 0.75,
+            "default": 0.8,
             "minimum": 0,
             "maximum": 1,
             "description": "Background opacity of the right sidebar (auxiliary bar) container (0 = fully transparent, 1 = opaque)."
