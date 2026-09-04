@@ -1,6 +1,9 @@
 .monaco-workbench .part.editor,
 .monaco-workbench .part.editor>.content .editor-group-container,
-.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab {
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab,
+.monaco-workbench.modern-ui.floating-panels .part.editor {
   border: none !important;
+  border-color: transparent !important;
+  outline: none !important;
   box-shadow: none !important;
 }

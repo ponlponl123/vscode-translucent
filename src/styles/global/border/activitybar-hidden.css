@@ -1,0 +1,15 @@
+.monaco-workbench .part.activitybar,
+.monaco-workbench .activitybar {
+  border: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+}
+
+.monaco-workbench .activitybar.bordered:before {
+  border: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+  display: none !important;
+}

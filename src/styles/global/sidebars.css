@@ -3,6 +3,8 @@ div#workbench.parts.sidebar,
 .style-override .monaco-pane-view .pane,
 .style-override.floating-panels .part.sidebar {
   background-color: color-mix(in srgb, var(--vscode-sideBar-background, var(--vscode-panel-background)) var(--vscode-translucent-left-sidebar-pct), transparent) !important;
+  border-radius: var(--vscode-translucent-left-sidebar-border-radius, 0px) !important;
+  overflow: hidden;
 }
 
 div#workbench.parts.auxiliarybar,
@@ -10,6 +12,8 @@ div#workbench.parts.auxiliarybar,
 .style-override.floating-panels .part.auxiliarybar,
 .antigravity-agent-side-panel {
   background-color: color-mix(in srgb, var(--vscode-sideBar-background, var(--vscode-panel-background)) var(--vscode-translucent-right-sidebar-pct), transparent) !important;
+  border-radius: var(--vscode-translucent-right-sidebar-border-radius, 0px) !important;
+  overflow: hidden;
 }
 
 .monaco-workbench .part.sidebar>.title,

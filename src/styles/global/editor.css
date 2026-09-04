@@ -2,6 +2,8 @@
 .monaco-workbench .part.editor>.content,
 .monaco-workbench .part.editor>.content .editor-group-container {
   background-color: color-mix(in srgb, var(--vscode-editor-background, #1e1e1e) var(--vscode-translucent-editor-pct), transparent) !important;
+  border-radius: var(--vscode-translucent-editor-border-radius, 0px) !important;
+  overflow: hidden;
 }
 .monaco-editor,
 .monaco-editor .margin,

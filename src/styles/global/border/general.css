@@ -3,4 +3,6 @@
 .monaco-pane-view .pane>.pane-header,
 .monaco-workbench .part.panel.bottom .composite.title {
   border: none !important;
+  border-color: transparent !important;
+  outline: none !important;
 }

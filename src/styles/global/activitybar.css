@@ -3,23 +3,43 @@
   --activity-bar-action-height: 40px !important;
   --activity-bar-icon-size: 20px !important;
   width: 48px !important;
-  background-color: transparent !important;
+  height: stretch !important;
+  background-color: color-mix(in srgb, var(--vscode-activityBar-background, var(--vscode-sideBar-background, #181818)) var(--vscode-translucent-activity-bar-pct), transparent) !important;
+  border-radius: var(--vscode-translucent-activity-bar-border-radius, 0px) !important;
+  margin: var(--vscode-translucent-activity-bar-margin, 0px) !important;
+  border: 1px solid var(--vscode-activityBar-border, var(--vscode-contrastBorder, rgba(255, 255, 255, 0.1)));
+  overflow: hidden;
+  box-sizing: border-box !important;
 }
+
+.monaco-workbench .part.activitybar:not(.right) {
+  margin-right: var(--vscode-translucent-activity-bar-margin-right, 0px) !important;
+}
+
+.monaco-workbench .part.activitybar.right {
+  margin-left: var(--vscode-translucent-activity-bar-margin-left, 0px) !important;
+}
+
 .monaco-workbench .activitybar.bordered:before {
   border: none !important;
 }
+
 .monaco-workbench .activitybar>.content :not(.monaco-menu)>.monaco-action-bar .action-item {
   margin-bottom: 3px;
 }
+
 .monaco-workbench .activitybar>.content :not(.monaco-menu)>.monaco-action-bar .action-item a {
   border-radius: 12px;
 }
+
 .monaco-workbench .activitybar>.content :not(.monaco-menu)>.monaco-action-bar .action-item.checked a {
   background-color: var(--vscode-sideBar-background);
 }
+
 .monaco-workbench .activitybar>.content :not(.monaco-menu)>.monaco-action-bar .action-item:hover a {
   background-color: var(--vscode-list-hoverBackground);
 }
+
 .monaco-workbench .activitybar>.content :not(.monaco-menu)>.monaco-action-bar .active-item-indicator {
   display: none !important;
 }

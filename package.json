@@ -2,9 +2,9 @@
   "name": "vscode-translucent",
   "displayName": "vscode-translucent",
   "description": "A Visual Studio Code extension that applies a native translucent backdrop effect to the editor window on Windows 11.",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "engines": {
-    "vscode": "^1.107.0"
+    "vscode": "^1.102.0"
   },
   "categories": [
     "Other",
@@ -140,8 +140,76 @@
         }
       },
       {
-        "title": "Translucent: Integrations",
+        "title": "Translucent: Container Corner Radius",
         "order": 4,
+        "properties": {
+          "vscode-translucent.editorContainerBorderRadius": {
+            "order": 1,
+            "type": "string",
+            "default": "8px",
+            "description": "Border radius (rounding) of the editor container (e.g. '0px', '8px', '12px')."
+          },
+          "vscode-translucent.leftSidebarContainerBorderRadius": {
+            "order": 2,
+            "type": "string",
+            "default": "8px",
+            "description": "Border radius (rounding) of the left sidebar container (e.g. '0px', '8px', '12px')."
+          },
+          "vscode-translucent.rightSidebarContainerBorderRadius": {
+            "order": 3,
+            "type": "string",
+            "default": "8px",
+            "description": "Border radius (rounding) of the right sidebar (auxiliary bar) container (e.g. '0px', '8px', '12px')."
+          }
+        }
+      },
+      {
+        "title": "Translucent: Side Activity Bar",
+        "order": 5,
+        "properties": {
+          "vscode-translucent.activityBarContainerBorderVisible": {
+            "order": 1,
+            "type": "boolean",
+            "default": false,
+            "description": "Controls whether the side activity bar container border is visible."
+          },
+          "vscode-translucent.activityBarContainerBackgroundOpacity": {
+            "order": 2,
+            "type": "number",
+            "default": 0,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Background opacity of the side activity bar container (0 = fully transparent, 1 = opaque)."
+          },
+          "vscode-translucent.activityBarContainerMargin": {
+            "order": 3,
+            "type": "string",
+            "default": "0px 2px 2px 2px",
+            "description": "[Experimental] Margin around the side activity bar container (e.g. '0px', '8px', '10px 0').",
+            "tags": [
+              "experimental"
+            ]
+          },
+          "vscode-translucent.activityBarContainerGap": {
+            "order": 4,
+            "type": "string",
+            "default": "0px",
+            "description": "[Experimental] Gap between the side activity bar container and the workspace (e.g. '0px', '8px').",
+            "tags": [
+              "experimental"
+            ]
+          },
+          "vscode-translucent.activityBarContainerBorderRadius": {
+            "order": 5,
+            "type": "string",
+            "default": "8px",
+            "description": "Border radius (rounding) of the side activity bar container (e.g. '0px', '8px', '12px')."
+          }
+        }
+      },
+      {
+        "title": "Translucent: Integrations",
+        "order": 6,
         "properties": {
           "vscode-translucent.applyToJupyterNotebook": {
             "order": 1,
