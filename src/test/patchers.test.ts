@@ -64,6 +64,14 @@ describe("Patcher Tests", () => {
           n.setBackgroundColor(t.colorInfo.background);
         `,
       },
+      {
+        name: "Modern variant (v1.140.0 mainImpl.js format)",
+        content: `
+          function Ql(i,n,e,t){let r=i.get(Gi),o=i.get(We),s=i.get(me),a=i.get(Te),l=s.getValue("window"),c={backgroundColor:r.getBackgroundColor(),minWidth:xw.WIDTH,minHeight:xw.HEIGHT,title:o.nameLong,show:n.mode!==0&&n.mode!==3,x:n.x,y:n.y,width:n.width,height:n.height,webPreferences:{...t,spellcheck:!1,zoomFactor:OR(n.zoomLevel??l?.zoomLevel),autoplayPolicy:"user-gesture-required",enableBlinkFeatures:"HighlightAPI",sandbox:!0,enableDeprecatedPaste:!0},experimentalDarkMode:!0};}
+          this._view.setBackgroundColor("#FFFFFF");
+          function updateBackgroundColor(e,t){for(let r of Ji())if(r.id===e){r.setBackgroundColor(t.colorInfo.background);break}}
+        `,
+      },
     ];
 
     for (const variant of sampleMainJsVariants) {

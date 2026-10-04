@@ -39,10 +39,10 @@ export async function disableTranslucent() {
 
 async function promptRestart() {
   const action = await vscode.window.showInformationMessage(
-    "Translucent effect applied. A restart is required.",
-    "Restart"
+    "Translucent effect applied. A full restart of VS Code (quit and relaunch) is required for window transparency to take effect.",
+    "Reload Window"
   );
-  if (action === "Restart") {
+  if (action === "Reload Window") {
     vscode.commands.executeCommand("workbench.action.reloadWindow");
   }
 }

@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import * as path from "path";
 import type { EffectType } from "../utils/config";
 
 const MARKER = "vscode-translucent-patched";
@@ -14,21 +15,23 @@ export function patch(filePath: string, effect: EffectType): boolean {
     content = doUnpatch(content);
   }
 
-  const bgOptRe = /\bbackgroundColor\s*:\s*([\w$]+\.getBackgroundColor\(\))\s*,/;
+  const fileName = path.basename(filePath);
+
+  const bgOptRe = /\b(backgroundColor\s*:\s*)([\w$]+\.getBackgroundColor\(\))\s*,/;
   if (!bgOptRe.test(content)) {
     throw new Error(
-      `Could not find expected code in main.js for patch: backgroundColor: *.getBackgroundColor(),`
+      `Could not find expected code in ${fileName} for patch: backgroundColor: *.getBackgroundColor(),`
     );
   }
   content = content.replace(
     bgOptRe,
-    `backgroundColor:"#00000000",/*${MARKER}:$1*/`
+    `backgroundColor:"#00000000",/*${MARKER}:$1$2*/`
   );
 
   const setBgRe = /\b([\w$]+\.setBackgroundColor\([\w$]+\.colorInfo\.background\))\s*;/;
   if (!setBgRe.test(content)) {
     throw new Error(
-      `Could not find expected code in main.js for patch: *.setBackgroundColor(*.colorInfo.background);`
+      `Could not find expected code in ${fileName} for patch: *.setBackgroundColor(*.colorInfo.background);`
     );
   }
   content = content.replace(
@@ -44,21 +47,21 @@ export function patch(filePath: string, effect: EffectType): boolean {
     );
   }
 
-  const expDarkRe = /\bexperimentalDarkMode\s*:\s*(!0|true)/;
+  const expDarkRe = /\b(experimentalDarkMode\s*:\s*)(!0|true)/;
   if (!expDarkRe.test(content)) {
     throw new Error(
-      `Could not find expected code in main.js for patch: experimentalDarkMode: !0`
+      `Could not find expected code in ${fileName} for patch: experimentalDarkMode: !0`
     );
   }
   if (effect !== "none") {
     content = content.replace(
       expDarkRe,
-      `experimentalDarkMode:$1,backgroundMaterial:"${effect}"/*${MARKER}*/`
+      `experimentalDarkMode:$2,backgroundMaterial:"${effect}"/*${MARKER}:$1$2*/`
     );
   } else {
     content = content.replace(
       expDarkRe,
-      `experimentalDarkMode:$1,transparent:!0/*${MARKER}*/`
+      `experimentalDarkMode:$2,transparent:!0/*${MARKER}:$1$2*/`
     );
   }
 
@@ -69,7 +72,12 @@ export function patch(filePath: string, effect: EffectType): boolean {
 export function doUnpatch(content: string): string {
   return content.replace(
     /\bbackgroundColor\s*:\s*"#00000000"\s*,\s*\/\*vscode-translucent-patched(?::(.*?))?\*\//g,
-    (_match, orig) => `backgroundColor: ${orig || "n.getBackgroundColor()"},`
+    (_match, orig) => {
+      if (!orig) {
+        return "backgroundColor: n.getBackgroundColor(),";
+      }
+      return orig.startsWith("backgroundColor") ? `${orig},` : `backgroundColor: ${orig},`;
+    }
   ).replace(
     /\b0\s*\/\*vscode-translucent-patched(?::(.*?))?\*\/\s*;/g,
     (_match, orig) => `${orig || "n.setBackgroundColor(t.colorInfo.background)"};`
@@ -77,8 +85,8 @@ export function doUnpatch(content: string): string {
     /\b((?:this|[\w$]+(?:\.[\w$]+)?)\.setBackgroundColor\()"#00000000"\)\s*\/\*vscode-translucent-patched\*\//g,
     `$1"#FFFFFF")`
   ).replace(
-    /\bexperimentalDarkMode\s*:\s*(!0|true)\s*,\s*(?:backgroundMaterial\s*:\s*"[^"]*"|transparent\s*:\s*!0|transparent\s*:\s*true)\s*\/\*vscode-translucent-patched\*\//g,
-    `experimentalDarkMode: $1`
+    /\bexperimentalDarkMode\s*:\s*(?:!0|true)\s*,\s*(?:backgroundMaterial\s*:\s*"[^"]*"|transparent\s*:\s*!0|transparent\s*:\s*true)\s*\/\*vscode-translucent-patched(?::(.*?))?\*\//g,
+    (_match, orig) => orig || "experimentalDarkMode: !0"
   );
 }
 

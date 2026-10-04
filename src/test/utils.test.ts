@@ -1,8 +1,12 @@
 import * as assert from "assert";
+import * as fs from "fs";
+import * as path from "path";
+import * as os from "os";
 import { compareVersions } from "../utils/version";
 import { normalizeOptions } from "../utils/options";
 import { clamp, formatSize, parseBoxValues, calcMargin } from "../utils/format";
 import { buildCSS } from "../styles";
+import { getInstallPaths } from "../utils/paths";
 
 describe("Utils & CSS Builder Tests", () => {
   describe("format utils", () => {
@@ -165,6 +169,55 @@ describe("Utils & CSS Builder Tests", () => {
       });
       assert.ok(withoutBorders.includes("border-right: none !important;"));
       assert.ok(withoutBorders.includes(".activitybar.bordered:before"));
+    });
+  });
+
+  describe("getInstallPaths", () => {
+    let tmpDir: string;
+
+    beforeEach(() => {
+      tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "vscode-paths-test-"));
+    });
+
+    afterEach(() => {
+      if (fs.existsSync(tmpDir)) {
+        fs.rmSync(tmpDir, { recursive: true, force: true });
+      }
+    });
+
+    it("prioritizes mainImpl.js for modern VS Code (>= 1.140)", () => {
+      const outDir = path.join(tmpDir, "out");
+      fs.mkdirSync(outDir, { recursive: true });
+      fs.writeFileSync(path.join(outDir, "main.js"), "bootstrapper", "utf-8");
+      fs.writeFileSync(path.join(outDir, "mainImpl.js"), "implementation", "utf-8");
+
+      const paths = getInstallPaths(tmpDir);
+      assert.strictEqual(paths.mainJs, path.join(outDir, "mainImpl.js"));
+    });
+
+    it("falls back to main.js for legacy VS Code (<= 1.139)", () => {
+      const outDir = path.join(tmpDir, "out");
+      fs.mkdirSync(outDir, { recursive: true });
+      fs.writeFileSync(path.join(outDir, "main.js"), "legacy main", "utf-8");
+
+      const paths = getInstallPaths(tmpDir);
+      assert.strictEqual(paths.mainJs, path.join(outDir, "main.js"));
+    });
+
+    it("resolves electron-sandbox workbench dir if present", () => {
+      const sandboxWorkbench = path.join(
+        tmpDir,
+        "out",
+        "vs",
+        "code",
+        "electron-sandbox",
+        "workbench"
+      );
+      fs.mkdirSync(sandboxWorkbench, { recursive: true });
+      fs.writeFileSync(path.join(sandboxWorkbench, "workbench.html"), "<html></html>", "utf-8");
+
+      const paths = getInstallPaths(tmpDir);
+      assert.strictEqual(paths.workbenchHtml, path.join(sandboxWorkbench, "workbench.html"));
     });
   });
 });
