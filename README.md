@@ -7,7 +7,7 @@ Bring sleek translucent aesthetics and background blur to your VS Code editor.
 >
 > | IDE / Fork | OS | Version | IDE Version | Status |
 > | :--- | :--- | :--- | :---: | :---: |
-> | **Visual Studio Code** | Windows 11 `25H2` | `v1.107.0` – `v1.135.0` | same | ✅ Fully Supported |
+> | **Visual Studio Code** | Windows 11 `25H2` | `v1.107.0` – `v1.140.0` | same | ✅ Fully Supported |
 > | **Antigravity IDE** | Windows 11 `25H2` | `v1.107.0` | `v2.5.5` | ✅ Supported |
 > | **Cursor** | Windows | Any | Any | ❓ Untested |
 > | **Windsurf** | Windows | Any | Any | ❓ Untested |
